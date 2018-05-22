@@ -13,7 +13,7 @@
 const Factory = use('Factory')
 
 class DatabaseSeeder {
-  
+
   async run () {
     const customersArray = await Factory
       .model('App/Models/Customer')
@@ -37,7 +37,7 @@ class DatabaseSeeder {
       for(let i = 1; i <= 5; i++) {
         const room = await Factory
           .model('App/Models/Room')
-          .createMany({ cinema_id: cinema.id });
+          .create({ cinema_id: cinema.id });
 
         const movie = await Factory
           .model('App/Models/Movie').create(); // No lo estamos relacionando con nada. No tiene relación directa. De por sí es una película que se ve en cualquier cine y sala

@@ -17,7 +17,7 @@ class AuthController {
     }
 
     // Registramos usuarios
-    async register({ request, response}) {
+    async register({ request, response }) {
         const userInstance = new User();
         const { user } = request.all(); //Se recibe via POST los datos del usuario y lo desestructuramos
 
