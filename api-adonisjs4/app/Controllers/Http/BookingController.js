@@ -45,7 +45,7 @@ class BookingController {
                 booking.where('customer_id', customer.id).limit(1).orderBy('id', 'desc')
                     .with('seats')
                     .with('movie_showing_time', async movie_showing_time => {
-                        movie_showing_time.select('id', 'movie_showing_id')
+                        movie_showing_time.select('id', 'hour_to_show', 'movie_showing_id')
                             .with('movie_showing', (movie_showing) => {
                                 movie_showing.select('id', 'cinema_id', 'room_id', 'movie_id')
                                     .with('movie', (movie) => {
@@ -71,7 +71,7 @@ class BookingController {
         await customer.loadMany({
             bookings: (booking) => { // Todas las reservas de un cliente
                 booking.where('customer_id', customer.id).orderBy('id', 'desc')
-                    .with('seats')
+                    .withCount('seats')
                     .with('movie_showing_time', async movie_showing_time => {
                         movie_showing_time.select('id', 'movie_showing_id')
                             .with('movie_showing', (movie_showing) => {

@@ -7,6 +7,7 @@ import Vue from 'vue';
 
 const state = {
     user: null,
+    // Convierte el objeto en un booleano
     logged: !!window.localStorage.getItem('_token') // Para saber si el usuario está logado. Lo convierte en un booleano para saber si el usuario está usando la sesión de localStorage
 };
 
@@ -31,7 +32,7 @@ const actions = {
     },
     [types.actions.register]: ({commit}, userInput) => { // Los datos del formulario del registro
         commit(globalTypes.mutations.startProcessing); // PAra bloquear la pantalla con blockUI
-
+        console.log(userInput);
         return new Promise( (resolve, reject) => {
             Vue.http.post('register', {user: userInput})
                 .then(user => {

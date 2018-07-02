@@ -6,12 +6,13 @@ import router from '@/router'
 // vue resource
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
-Vue.http.options.root = 'http://127.0.0.1:3333/api/v1/' // La URL base de la API
+Vue.http.options.root = 'http://127.0.0.1:3333/api/v1/'; // La URL base de la API
 Vue.http.interceptors.push( (request, next) => { // Para enviar el token en cada petición
-  request.headers.set('Authorization', `Bearer ${window.localStorage.getItem('_token') }` );
+  console.log(window.localStorage.getItem('_token'));
+  request.headers.set('Authorization', `Bearer ${window.localStorage.getItem('_token')}`);
   // Siempre se ha de enviar con Bearer porque luego ADONIS va a hacer un split de la palabra más un espacio y se quedará con el token
   next(); // Para que el flujo de nuestra aplicación continue
-})
+});
 //////
 
 // VUEX -- El almacen de datos de la aplicación
@@ -27,11 +28,13 @@ Vue.use(BlockUI);
 // Módulos y tipos
 import globalTypes from '@/types/global';
 import authModule from '@/modules/auth';
+import cinemaModule from '@/modules/cinema';
+import movieModule from '@/modules/movie';
+import bookingModule from '@/modules/booking';
 ////////////////////
 
 // vee-validate - Esto se puede ver en el apartado de Vue de Chrome. Esto saca el apartado computed de cada etiqueta <Root>, <App>, etc
 import VeeValidate, {Validator} from 'vee-validate';
-
 import validatorEs from '@/validator/es';
 import validatorEn from '@/validator/en';
 
@@ -85,7 +88,10 @@ export const store = new Vuex.Store({
     }
   },
   modules: {
-    authModule
+    authModule,
+    cinemaModule,
+    movieModule,
+    bookingModule
   }
 
 });
