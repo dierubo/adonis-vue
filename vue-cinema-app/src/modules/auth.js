@@ -35,7 +35,7 @@ const actions = {
         return new Promise( (resolve, reject) => {
             Vue.http.post('register', {user: userInput})
                 .then(user => {
-                    resolver(user);
+                    resolve(user);
                 })
                 .catch(error => {
                     reject(error);
