@@ -57,7 +57,7 @@
             }),
             validateBeforeSubmit() {
                 this.$validator.validateAll().then(result => {
-                    if ( ! result) {
+                    if (!result) {
                     //hay errores. fallan las validaciones
                     } else {
                         this.register({

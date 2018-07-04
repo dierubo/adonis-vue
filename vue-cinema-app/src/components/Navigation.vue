@@ -17,7 +17,7 @@
                     <li><router-link to="/">{{ $t('navigation.cinema') }}</router-link></li>
                     <li><router-link to="/profile" v-if="isLogged">{{ $t('navigation.my_account') }}</router-link></li>
                     <li><router-link to="/bookings" v-if="isLogged">{{ $t('navigation.bookings') }}</router-link></li>
-                    <!-- <language-selector></language-selector> -->
+                    <language-selector></language-selector>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -37,7 +37,11 @@
 <script>
     import {mapGetters, mapActions} from 'vuex';
     import authTypes from '@/types/auth';
+    import LanguageSelector from "./LanguageSelector";
     export default {
+        components: {
+            LanguageSelector
+        },
         name: 'navigation', // Se asigna un nombre a este componente
         methods: {
             ...mapActions({

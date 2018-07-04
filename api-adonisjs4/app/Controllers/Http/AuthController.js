@@ -18,6 +18,7 @@ class AuthController {
 
     // Registramos usuarios
     async register({ request, response }) {
+        console.log('prueba');
         const userInstance = new User();
         const { user } = request.all(); //Se recibe via POST los datos del usuario y lo desestructuramos
 
@@ -31,7 +32,7 @@ class AuthController {
         return response.json(userInstance)
     }
 
-    async register({ request, response, auth}) {
+    async profile({ request, response, auth}) {
         let user = await auth.getUser(); // Devuelve el usuario identificado con el token que nos han pasado
         const userInput = request.input('user'); // Se coge los datos que vienen vía POST en vez de usar request.all() y devuelve un array con 'email' y 'username'
         user.email = userInput['email'];
